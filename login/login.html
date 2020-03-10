@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="login.css" />
+</head>
+
+<body>
+  <button id="loginFormButton" onclick="showLoginForm()">Login</button>
+  <form id="loginForm">
+    <div class="loginInfoContainer">
+      <label for="username"><b>Username</b></label><br>
+      <input type="text" placeholder="Enter Username" id="username" required /><br>
+
+      <label for="password"><b>Password</b></label><br>
+      <input type="password" placeholder="Enter Password" id="password" required /><br>
+
+      <button id="loginSubmitButton" type="submit">Login</button><br>
+
+      <input type="checkbox" checked="checked" id="rememberMe" />
+      <label for="rememberMe">Remember me</label>
+
+      <span id="passwordForget">
+        <a>Forget password?</a>
+      </span><br>
+
+      <div id="loginBottomBox">
+        <button id="loginCancelButton" type="button">Cancel</button>
+      </div>
+    </div>
+  </form>
+  <script src="login.js"></script>
+</body>
+
+</html>
