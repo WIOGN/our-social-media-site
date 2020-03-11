@@ -8,9 +8,14 @@
 </head>
 
 <body>
-  <button id="loginFormButton" onclick="showLoginForm()">Login</button>
+
+  <button id="loginFormButton" onclick="document.getElementById('loginForm').style.display = 'block';">Login</button>
+
   <form id="loginForm">
     <div class="loginInfoContainer">
+
+      <button id="x" onclick="this.parentElement.parentElement.style.display = 'none';">X</button>
+
       <label for="username"><b>Username</b></label><br>
       <input type="text" placeholder="Enter Username" id="username" required /><br>
 
@@ -27,8 +32,10 @@
       </span><br>
 
       <div id="loginBottomBox">
-        <button id="loginCancelButton" type="button">Cancel</button>
+        <button id="loginCancelButton" type="button"
+          onclick="this.parentElement.parentElement.parentElement.style.display = 'none';">Cancel</button>
       </div>
+
     </div>
   </form>
   <script src="login.js"></script>
