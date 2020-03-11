@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Image</title>
+    <title>Homepage</title>
     <link rel="stylesheet" type="text/css" href="navbar.css" />
     <link rel="stylesheet" type="text/css" href="login.css" />
     <link rel="stylesheet" type="text/css" href="signup.css" />
-    <link rel="stylesheet" type="text/css" href="image.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="userAccount.css" />
 </head>
 
 <body>
@@ -85,41 +86,22 @@
         </div>
     </form>
 
-    <img class="imageDisplay" src="orange.jpg">
-    <div class="imageInfo">
-
-        <button class="ratingButtons">Dislike</button>
-        <button class="ratingButtons">Like</button>
-
-
-        <p>orange.jpg</p>
-        <p>Size: 5440x3627 1.26MB</p>
-        <a href="orange.jpg" download>Download</a>
-        <p>Tags: orange, fruit</p>
-
-    </div>
-
-
-
-    <div id="commentBar">Comment Below</div>
-
-    <div id="commentContainer">
-
-        <div id="newCommentBox">
-            <textarea id="newComment" placeholder="Comment here..."></textarea><br>
-            <input type="submit" id="commentSubmit">
+    <div class="talk_con">
+        <div class="talk_show" id="words">
+            <div class="userA"><span id="Asays">Hello</span></div>
+            <div class="userB"><span id="Bsays">Hey</span></div>
         </div>
-
-        <div class="comment">
-            <div class="commentUser">@user1</div>
-            <div class="userComment">I hate these fake comment!</div>
-        </div>
-        <div class="comment">
-            <div class="commentUser">@user2</div>
-            <div class="userComment">LOL, ME TOO!</div>
+        <div class="talk_input">
+            <select class="whostalking" id="who">
+                <option value="0">A</option>
+                <option value="1">B</option>
+            </select>
+            <input type="text" class="talk_word" id="talkwords">
+            <input type="button" value="send" class="talk_sub" id="talksub">
         </div>
 
     </div>
+    <script src="userAccount.js"></script>
 
 </body>
 
