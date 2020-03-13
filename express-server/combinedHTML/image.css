@@ -70,7 +70,8 @@
     font-size: 1em;
 }
 
-.ratingButtons:hover {
+.ratingButtons:hover,
+#commentSubmit:hover {
     background-color: chartreuse;
     color: black;
 }
