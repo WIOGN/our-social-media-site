@@ -61,4 +61,4 @@ app.get('/userAccount.js', (req, res) => {
     res.sendFile(__dirname + '/combinedHTML/userAccount.js');
 });
 
-app.listen(8001, () => console.log('Listening on port 8001..'));
+app.listen(8000, () => console.log('Listening on port 8000..'));
