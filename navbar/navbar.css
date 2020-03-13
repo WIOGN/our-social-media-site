@@ -52,6 +52,10 @@ body {
     background-color: whitesmoke;
     color: black;
 }
+.container{
+    display:flex;
+
+}
 
 .talk_con{
     width:600px;
@@ -59,6 +63,7 @@ body {
     border:1px;
     margin: 50px auto 0;
     background: #f9f9f9;
+    
 }
 .talk_show{
     width:580px;
@@ -115,4 +120,26 @@ body {
     border-radius:10px;
     color:#fff;
     padding:5px 10px;
+}
+.friend{
+    height: 35px;
+    background-color: #2459a2;
+    color: white;
+    line-height: 35px;
+}
+.friendtitle{
+    height: 50px;
+    background-color: #245910;
+    color: white;
+    line-height: 40px;
+    text-align:center;
+}
+.friendlist{
+    width:300px;
+    height: 200px;
+    border:1px;
+    margin:0;
+    float:left;
+    background: #f9f9f9;
+    position: relative;
 }

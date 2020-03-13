@@ -16,9 +16,11 @@ window.onload = function () {
         if(Who.value == 0){
 
             str = '<div class="userA"><span>' + TalkWords.value +'</span></div>';
+            TalkWords.value = "";
         }
         else{
             str = '<div class="userB"><span>' + TalkWords.value +'</span></div>' ;
+            TalkWords.value = "";
         }
         Words.innerHTML = Words.innerHTML + str;
     }
