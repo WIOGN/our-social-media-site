@@ -1,0 +1,24 @@
+.specialBox {
+    border: #9933CC 2px solid;
+    padding: 5em;
+    margin: 2em;
+    border-radius: 1em;
+}
+
+.uploadButton {
+    background-color: #9933CC;
+    color: white;
+}
+
+.uploadButton:hover {
+    background-color: #aa66cc;
+}
+
+input[type=file]::-webkit-file-upload-button {
+    background-color: #9933CC;
+    color: white;
+}
+
+input[type=file]::-webkit-file-upload-button:hover {
+    background-color: #aa66cc;
+}

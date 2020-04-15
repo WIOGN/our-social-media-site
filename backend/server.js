@@ -1,12 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
-import imagePostRoutes from './routes/api/imagePost'
+import upload from './api/routes/upload';
+import getSmall from './api/routes/getSmall';
 
 var app = express();
-app.use(express.json());
+app.use(cors())
 
-mongoose.connect('mongodb://localhost:27017/wiogn', { useNewUrlParser: true });
+var connection = mongoose.connect('mongodb+srv://admin:password12345@wiogn-rcqw7.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true });
 var db = mongoose.connection;
 
 db.on('error', function () {
@@ -17,7 +19,8 @@ db.once('open', function () {
     console.log("MongoDB Connection Sucessful!!!");
 });
 
-//Use Routes
-app.use('/api/imageposts', imagePostRoutes);
+// Use Routes
+app.use('/api/upload', upload);
+app.use('/api/getsmall', getSmall);
 
 app.listen(8000, () => console.log('Listening on port 8000..'));
