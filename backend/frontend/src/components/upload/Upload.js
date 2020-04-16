@@ -23,9 +23,9 @@ class Upload extends React.Component {
         formdata.append('image', this.state.file)
 
         try {
-            var res = await axios.post('/api/upload', formdata)
+            var res = await axios.post('/api/upload', formdata);
+            res = res.data;
             console.log(res)
-            console.log(res.json())
         }
         catch (err) {
             alert("Error occurred while uploading")

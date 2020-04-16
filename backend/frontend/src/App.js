@@ -6,10 +6,12 @@ import {
   Link
 } from "react-router-dom";
 
-import LoggedOutNavbar from './components/navbar/LoggedOutNavbar'
-import SignUp from './components/signup/SignUp'
-import LogIn from './components/login/Login'
-import Upload from './components/upload/Upload'
+import Homepage from './components/home/home';
+import LoggedOutNavbar from './components/navbar/LoggedOutNavbar';
+import SignUp from './components/signup/SignUp';
+import LogIn from './components/login/Login';
+import Upload from './components/upload/Upload';
+import NormalImage from './components/imageView/normalImage';
 
 class App extends React.Component {
 
@@ -19,15 +21,11 @@ class App extends React.Component {
       <Router>
         <LoggedOutNavbar />
         <Switch>
-          <Route exact path='/upload'>
-            <Upload />
-          </Route>
-          <Route exact path='/login'>
-            <LogIn />
-          </Route>
-          <Route exact path='/signup'>
-            <SignUp />
-          </Route>
+          <Route exact path='/' component={Homepage} />
+          <Route exact path='/upload' component={Upload} />
+          <Route exact path='/login' component={LogIn} />
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/image' component={NormalImage} />
         </Switch>
       </Router>
     );

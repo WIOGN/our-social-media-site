@@ -1,0 +1,43 @@
+.imageDisplay {
+    max-width: 100vw;
+    height: auto;
+}
+
+.commentBar {
+    width: 100vw;
+    height: auto;
+    background-color: #9933CC;
+    text-align: center;
+    margin: auto;
+    font-size: 3em;
+    color: wheat;
+    margin: 1em 0 2em 0;
+}
+
+.newCommentBox {
+    margin: 1em;
+    padding: 1em;
+    border: gray solid 1px;
+    font-size: 1.25em;
+    padding-bottom: 3em;
+}
+
+.newComment {
+    width: 100%;
+    min-height: 10em;
+    resize: none;
+}
+
+.commentSubmitButton {
+    border: none;
+    width: 10em;
+    height: 3em;
+    font-size: .75em;
+    float: right;
+    background-color: #9933CC;
+    color: white;
+}
+
+.commentSubmitButton:hover {
+    background-color: #aa66cc;
+}

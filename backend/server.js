@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import upload from './api/routes/upload';
 import getSmall from './api/routes/getSmall';
+import getImage from './api/routes/getNormal';
 
 var app = express();
 app.use(cors())
@@ -22,5 +23,6 @@ db.once('open', function () {
 // Use Routes
 app.use('/api/upload', upload);
 app.use('/api/getsmall', getSmall);
+app.use('/api/getimage', getImage);
 
 app.listen(8000, () => console.log('Listening on port 8000..'));

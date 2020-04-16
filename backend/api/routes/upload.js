@@ -26,7 +26,7 @@ router.post('/', upload.single('image'), async function (req, res, next) {
     var smallPath = 'uploads/smalls/' + req.file.filename;
 
     sharp(req.file.path)
-        .resize(500, 500)
+        .resize(150, 150)
         .toFile(smallPath)
 
     var newNormalImage = new NormalImage({
@@ -47,7 +47,7 @@ router.post('/', upload.single('image'), async function (req, res, next) {
             throw Error('Something went wrong saving the item');
         }
 
-        res.status(200).json(promise1)
+        res.status(200).json({ name: req.file.filename });
     }
     catch (err) {
         res.status(400).json({ msg: err.message });
