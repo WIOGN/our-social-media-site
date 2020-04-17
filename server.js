@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import path from 'path';
 
 import upload from './api/routes/upload';
 import getSmall from './api/routes/getSmall';
@@ -25,6 +26,14 @@ db.once('open', function () {
 app.use('/api/upload', upload);
 app.use('/api/getsmall', getSmall);
 app.use('/api/getimage', getImage);
+
+//Production mode here
+app.use(express.static('frontend/build'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+});
+
 
 var server = app.listen(8000, () => console.log('Listening on port 8000..'));
 
