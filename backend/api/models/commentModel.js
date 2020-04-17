@@ -1,9 +1,10 @@
 import { Schema, model } from 'mongoose';
+import { strategy } from 'sharp';
 
 var CommentModelSchema = new Schema({
     username: {
         type: String,
-        default: "Username",
+        default: "Username Suppose to be Here",
         required: true
     },
     imageName: {
