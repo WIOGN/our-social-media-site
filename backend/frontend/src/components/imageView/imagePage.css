@@ -41,3 +41,16 @@
 .commentSubmitButton:hover {
     background-color: #aa66cc;
 }
+
+.comment {
+    margin: 1em;
+    padding: 1em;
+    border: gray solid 1px;
+    font-size: 1.25em;
+}
+
+.commentUser {
+    margin-bottom: .25em;
+    border-bottom: solid gray 1px;
+}
+

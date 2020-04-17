@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Upload.css'
 
@@ -8,7 +9,8 @@ class Upload extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            file: null
+            file: null,
+            uploadCompleted: null
         }
     }
 
@@ -24,8 +26,10 @@ class Upload extends React.Component {
 
         try {
             var res = await axios.post('/api/upload', formdata);
-            res = res.data;
-            console.log(res)
+            console.log(res.data.name);
+            this.setState({
+                uploadCompleted: res.data.name
+            });
         }
         catch (err) {
             alert("Error occurred while uploading")
@@ -35,6 +39,11 @@ class Upload extends React.Component {
 
 
     render() {
+
+        if (this.state.uploadCompleted) {
+            return <Redirect to={'/image?name=' + this.state.uploadCompleted} />;
+        }
+
         return (
             <div className="container-fluid h-100">
                 <div className="row justify-content-center align-items-center h-100">
