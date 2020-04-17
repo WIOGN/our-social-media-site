@@ -23,23 +23,24 @@ var upload = multer({ storage: storage });
 router.post('/', upload.single('image'), async function (req, res, next) {
     // console.log(req.file);
 
-    var smallPath = 'uploads/smalls/' + req.file.filename;
-
-    sharp(req.file.path)
-        .resize(150, 150)
-        .toFile(smallPath)
-
-    var newNormalImage = new NormalImage({
-        name: req.file.filename,
-        path: req.file.path
-    });
-
-    var newSmallImage = new SmallImage({
-        name: req.file.filename,
-        path: smallPath
-    });
-
     try {
+
+        var smallPath = 'uploads/smalls/' + req.file.filename;
+
+        sharp(req.file.path)
+            .resize(150, 150)
+            .toFile(smallPath)
+
+        var newNormalImage = new NormalImage({
+            name: req.file.filename,
+            path: req.file.path
+        });
+
+        var newSmallImage = new SmallImage({
+            name: req.file.filename,
+            path: smallPath
+        });
+
         var promise1 = await newNormalImage.save();
         var promise2 = await newSmallImage.save();
 

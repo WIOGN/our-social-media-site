@@ -41,8 +41,11 @@ class CommentSection extends React.Component {
             })
 
         });
-        socket.on('allComment', async (data) => {
-            console.log('Old Comment');
+        socket.on('OldComment', async (data) => {
+            console.log(data);
+            this.setState({
+                comments: data
+            })
         });
         this.setState({ socket: socket });
     }

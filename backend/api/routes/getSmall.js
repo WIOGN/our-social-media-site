@@ -7,7 +7,7 @@ var router = Router();
 router.get('/', async (req, res) => {
 
     try {
-        var allSmall = await SmallImage.find().sort({ date: -1 })
+        var allSmall = await SmallImage.find().sort({ date: -1 });
 
         var arr = allSmall.map(x => ({ name: x.name }));
 
