@@ -3,12 +3,25 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import path from 'path';
 import socketio from 'socket.io';
+import fs from 'fs';
 
 import upload from './api/routes/upload';
 import getSmall from './api/routes/getSmall';
 import getImage from './api/routes/getNormal';
 import socketComment from './api/routes/socketComment';
 import socketHome from './api/routes/socketHome';
+
+fs.mkdir('./uploads/originals', { recursive: true }, (err) => {
+    if (err) {
+        console.log(err);
+    }
+});
+
+fs.mkdir('./uploads/smalls', { recursive: true }, (err) => {
+    if (err) {
+        console.log(err);
+    }
+});
 
 var app = express();
 app.use(cors())
