@@ -1,4 +1,4 @@
-# Ignore everything
-*
-#Allow build
-!/build/
+.git
+Dockerfile
+docker-compose
+node_modules
