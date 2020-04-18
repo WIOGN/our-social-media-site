@@ -5,7 +5,8 @@ import base64url from 'base64url';
 import sharp from 'sharp';
 
 import NormalImage from '../models/normal-image';
-import SmallImage from '../models/small-image'
+import SmallImage from '../models/small-image';
+import { NShomesystem } from './socketHome';
 
 var router = Router();
 
@@ -49,6 +50,8 @@ router.post('/', upload.single('image'), async function (req, res, next) {
         }
 
         res.status(200).json({ name: req.file.filename });
+        NShomesystem.emit('newUpload', { imageName: req.file.filename })
+
     }
     catch (err) {
         res.status(400).json({ msg: err.message });

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import io from "socket.io-client";
 
 import SmallImage from './smallImage'
 import './home.css'
@@ -8,12 +9,39 @@ class Homepage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            socket: null,
             imageList: null
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.state.socket) {
+            this.state.socket.disconnect();
         }
     }
 
     componentDidMount() {
         this.getSmallImages();
+        this.handleSocket();
+    }
+
+    handleSocket = async () => {
+        var socket = io('/homesystem');
+
+        this.setState({
+            socket: socket
+        });
+
+        socket.on('newUpload', async (data) => {
+            var imageList = this.state.imageList;
+
+            imageList.unshift({ name: data.imageName });
+
+            this.setState({
+                imageList: imageList
+            });
+
+        });
     }
 
     getSmallImages = async () => {

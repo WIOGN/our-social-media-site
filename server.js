@@ -8,6 +8,7 @@ import upload from './api/routes/upload';
 import getSmall from './api/routes/getSmall';
 import getImage from './api/routes/getNormal';
 import socketComment from './api/routes/socketComment';
+import socketHome from './api/routes/socketHome';
 
 var app = express();
 app.use(cors())
@@ -39,3 +40,4 @@ app.get('*', (req, res) => {
 var server = app.listen(8000, () => console.log('Listening on port 8000..'));
 var io = socketio(server);
 socketComment(io);
+socketHome(io);

@@ -23,18 +23,15 @@ class CommentSection extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.state.imageName);
         this.handleSocket()
     }
 
     handleSocket = async () => {
         var socket = io('/commentsystem');
         socket.on('connect', async (data) => {
-            console.log('Socket Connected!!!');
             socket.emit('joinRoom', { room: this.state.imageName });
         });
         socket.on('newComment', async (data) => {
-            console.log(data);
             var comments = this.state.comments;
             comments.unshift(data);
 
@@ -44,9 +41,15 @@ class CommentSection extends React.Component {
 
         });
         socket.on('OldComment', async (data) => {
-            console.log(data);
             this.setState({
                 comments: data
+            })
+        });
+
+        socket.on('newVote', async (data) => {
+            this.setState({
+                likes: data.likes,
+                dislikes: data.dislikes
             })
         });
         this.setState({ socket: socket });
@@ -56,19 +59,31 @@ class CommentSection extends React.Component {
         this.setState({ text: event.target.value });
     }
 
-    handleSubmitButton = async (event) => {
+    handleSubmitButton = async () => {
         if (this.state.socket) {
             this.state.socket.emit('newComment', { room: this.state.imageName, comment: this.state.text });
+        }
+    }
+
+    handleLike = async () => {
+        if (this.state.socket) {
+            this.state.socket.emit('newVote', { room: this.state.imageName, vote: true });
+        }
+    }
+
+    handleDislike = async () => {
+        if (this.state.socket) {
+            this.state.socket.emit('newVote', { room: this.state.imageName, vote: false });
         }
     }
 
     render() {
         return (
             <div>
-                <button className="ratingButton">Like</button>
-                <div className='ratingCounter'>100</div>
-                <button className="ratingButton">Dislike</button>
-                <div className='ratingCounter'>100</div>
+                <button className="ratingButton" onClick={this.handleLike}>Like</button>
+                <div className='ratingCounter'>{this.state.likes}</div>
+                <button className="ratingButton" onClick={this.handleDislike}>Dislike</button>
+                <div className='ratingCounter'>{this.state.dislikes}</div>
                 <div className="commentBar">Comment Below</div>
                 <div className="newCommentBox">
                     <textarea className="newComment" placeholder="Comment here..." onChange={this.handleTextAreaChange} />
