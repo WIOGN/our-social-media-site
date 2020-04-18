@@ -54,3 +54,24 @@
     border-bottom: solid gray 1px;
 }
 
+.ratingButton {
+    border: black solid 1pt;
+    background-color: #9933CC;
+    width: 8em;
+    height: 3em;
+    color: white;
+    font-size: 1em;
+    color: white;
+}
+
+.ratingButton:hover {
+    background-color: #aa66cc;
+    color: black;
+}
+
+.ratingCounter {
+    display: inline;
+    background-color: #9933CC;
+    color: white;
+    padding: 1em;
+}

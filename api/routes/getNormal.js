@@ -8,7 +8,7 @@ router.get('/:name', async (req, res) => {
     // console.log(req.params.name);
 
     try {
-        var normalImage = await NormalImage.findOne({ name: req.params.name })
+        var normalImage = await NormalImage.findOne({ name: req.params.name });
         // console.log(smallPicture);
         if (!normalImage) {
             throw Error("Can't Find image");

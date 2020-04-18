@@ -2,10 +2,10 @@ import socketio from 'socket.io';
 
 import CommentModel from '../models/commentModel';
 
-const handleServerSocket = (server) => {
-    var io = socketio(server);
+const handleServerSocket = (io) => {
+    NScommentsystem = io.of('/commentsystem')
 
-    io.on('connection', async (socket) => {
+    NScommentsystem.on('connection', async (socket) => {
 
         socket.on('joinRoom', async (data) => {
             //room is image name
@@ -27,10 +27,11 @@ const handleServerSocket = (server) => {
             });
             newComment.save();
 
-            io.to(data.room).emit('newComment', { comment: data.comment });
+            NScommentsystem.to(data.room).emit('newComment', { comment: data.comment });
         });
 
     });
 }
 
 export default handleServerSocket;
+export var NScommentsystem;

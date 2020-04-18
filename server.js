@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import path from 'path';
+import socketio from 'socket.io';
 
 import upload from './api/routes/upload';
 import getSmall from './api/routes/getSmall';
@@ -36,5 +37,5 @@ app.get('*', (req, res) => {
 
 
 var server = app.listen(8000, () => console.log('Listening on port 8000..'));
-
-socketComment(server);
+var io = socketio(server);
+socketComment(io);
