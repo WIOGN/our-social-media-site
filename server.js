@@ -13,7 +13,7 @@ import socketHome from './api/routes/socketHome';
 var app = express();
 app.use(cors())
 
-var connection = mongoose.connect('mongodb+srv://admin:password12345@wiogn-rcqw7.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true });
+var connection = mongoose.connect('mongodb://mongo:27017', { useUnifiedTopology: true });
 var db = mongoose.connection;
 
 db.on('error', function () {
