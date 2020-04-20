@@ -1,0 +1,1 @@
+This is a really simple image hosting app. You can upload images, comment, like or dislike. All it does is allow you to share the images. In the future, you might be able to search for images, but it is not yet implemented.
