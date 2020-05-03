@@ -40,7 +40,7 @@ class Homepage extends React.Component {
             this.setState({
                 imageList: imageList
             });
-
+            this.forceUpdate();
         });
     }
 
