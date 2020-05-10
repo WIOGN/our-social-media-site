@@ -1,8 +1,50 @@
 import React from "react";
+import axios from "axios";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 
 class SignUp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            error: null
+        }
+    }
+
+    handleUsernameChange = (event) => {
+        this.setState({
+            username: event.target.value
+        });
+    }
+
+    handlePasswordChange = (event) => {
+        this.setState({
+            password: event.target.value
+        });
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            var res = await axios.post('/api/usercontroller/register', {
+                username: this.state.username,
+                password: this.state.password
+            });
+            localStorage.setItem('token', res.data.token);
+        }
+        catch (err) {
+            console.log(err.response);
+            this.setState({
+                error: err.response.data.msg
+            });
+        }
+
+
+    }
 
     render() {
         return (
@@ -10,9 +52,10 @@ class SignUp extends React.Component {
                 <div className="row justify-content-center align-items-center h-100">
                     <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-3 specialBox">
                         <h3>Sign Up Form</h3>
-                        <input className="form-control form-control-lg" placeholder="Username" type="text" />
-                        <input className="form-control form-control-lg" placeholder="Password" type="password" />
-                        <button className="btn-lg btn-block signupButton">Sign Up</button>
+                        <input onChange={this.handleUsernameChange} className="form-control form-control-lg" placeholder="Username" type="text" />
+                        <input onChange={this.handlePasswordChange} className="form-control form-control-lg" placeholder="Password" type="password" />
+                        <p style={{ color: 'red' }}>{this.state.error}</p>
+                        <button onClick={this.handleSubmit} className="btn-lg btn-block signupButton">Sign Up</button>
                     </div>
                 </div>
             </div>

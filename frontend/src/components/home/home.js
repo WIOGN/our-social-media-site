@@ -54,7 +54,7 @@ class Homepage extends React.Component {
         if (this.state.imageList) {
             return (
                 <div className="contentContainer">
-                    {this.state.imageList.map((image, i) => <SmallImage key={i} src={image.name} />)}
+                    {this.state.imageList.map((image) => <SmallImage key={image.name} src={image.name} />)}
                 </div>
             );
         }

@@ -1,6 +1,10 @@
 import { Schema, model } from 'mongoose';
 
 var imageVotingSchema = new Schema({
+    username: {
+        type: String,
+        required: true
+    },
     imageName: {
         type: String,
         required: true

@@ -21,8 +21,8 @@ class Upload extends React.Component {
     }
 
     handleUpload = async () => {
-        var formdata = new FormData()
-        formdata.append('image', this.state.file)
+        var formdata = new FormData();
+        formdata.append('image', this.state.file);
 
         try {
             var res = await axios.post('/api/upload', formdata);

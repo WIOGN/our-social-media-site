@@ -10,6 +10,7 @@ import getSmall from './api/routes/getSmall';
 import getImage from './api/routes/getNormal';
 import socketComment from './api/routes/socketComment';
 import socketHome from './api/routes/socketHome';
+import userController from './api/routes/userController';
 
 fs.mkdir('./uploads/originals', { recursive: true }, (err) => {
     if (err) {
@@ -24,9 +25,12 @@ fs.mkdir('./uploads/smalls', { recursive: true }, (err) => {
 });
 
 var app = express();
-app.use(cors())
+app.use(cors());
+app.use(express.json());
 
-var connection = mongoose.connect('mongodb://mongo:27017', { useUnifiedTopology: true });
+// var connection = mongoose.connect('mongodb://mongo:27017', { useUnifiedTopology: true });
+var connection = mongoose.connect('mongodb+srv://admin:password12345@wiogn-rcqw7.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true });
+
 var db = mongoose.connection;
 
 db.on('error', function () {
@@ -41,6 +45,7 @@ db.once('open', function () {
 app.use('/api/upload', upload);
 app.use('/api/getsmall', getSmall);
 app.use('/api/getimage', getImage);
+app.use('/api/usercontroller', userController);
 
 //Production mode here
 app.use(express.static('frontend/build'));

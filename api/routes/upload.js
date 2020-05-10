@@ -7,6 +7,8 @@ import sharp from 'sharp';
 import NormalImage from '../models/normal-image';
 import SmallImage from '../models/small-image';
 import { NShomesystem } from './socketHome';
+import auth from '../../middleware/auth'
+import user from '../models/userModel'
 
 var router = Router();
 
@@ -21,7 +23,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-router.post('/', upload.single('image'), async function (req, res, next) {
+router.post('/', auth, upload.single('image'), async function (req, res, next) {
     // console.log(req.file);
 
     try {

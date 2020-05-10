@@ -4,6 +4,8 @@ import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoggedOutNavbar.css'
 
+import axios from 'axios';
+
 function LoggedOutNavbar() {
     return (
         <Navbar className='navColor'>
