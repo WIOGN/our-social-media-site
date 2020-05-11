@@ -3,7 +3,6 @@ import io from "socket.io-client";
 import axios from 'axios';
 
 import "./imagePage.css";
-import { wait } from "@testing-library/react";
 
 class CommentSection extends React.Component {
     constructor(props) {
@@ -95,14 +94,49 @@ class CommentSection extends React.Component {
     }
 
     handleLike = async () => {
-        if (this.state.socket) {
-            this.state.socket.emit('newVote', { room: this.state.imageName, vote: true });
+
+        if (localStorage.getItem('token')) {
+            try {
+                var res = await axios.post('/api/imagedata/vote', {
+                    auth_token: localStorage.getItem('token'),
+                    imageName: this.state.imageName,
+                    vote: true
+                })
+
+                if (res.status === 200) {
+                    // console.log(res.data);
+                    this.setState({
+                        likes: res.data.likes,
+                        dislikes: res.data.dislikes
+                    });
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
     }
 
     handleDislike = async () => {
-        if (this.state.socket) {
-            this.state.socket.emit('newVote', { room: this.state.imageName, vote: false });
+        if (localStorage.getItem('token')) {
+            try {
+                var res = await axios.post('/api/imagedata/vote', {
+                    auth_token: localStorage.getItem('token'),
+                    imageName: this.state.imageName,
+                    vote: false
+                })
+
+                if (res.status === 200) {
+                    // console.log(res.data);
+                    this.setState({
+                        likes: res.data.likes,
+                        dislikes: res.data.dislikes
+                    });
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
     }
 

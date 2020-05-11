@@ -60,8 +60,44 @@ router.post('/newcomment', auth, async (req, res) => {
     catch (err) {
         res.status(400).json({ msg: err.message });
     }
+});
 
+router.post('/vote', auth, async (req, res) => {
+    // console.log(req.body);
+    // console.log(req.user);
 
+    try {
+        var vote = await VotingModel.findOne({ imageName: req.body.imageName, username: req.user.username });
+
+        // console.log(vote);
+
+        if (!vote) {
+            vote = new VotingModel({
+                username: req.user.username,
+                imageName: req.body.imageName,
+                vote: req.body.vote
+            });
+            vote = await vote.save();
+        }
+        else if (vote.vote != req.body.vote) {
+            vote.vote = req.body.vote;
+            await vote.save();
+        }
+        else {
+            throw Error("No Change");
+        }
+
+        var likes = VotingModel.countDocuments({ imageName: req.body.imageName, vote: true });
+        var dislikes = VotingModel.countDocuments({ imageName: req.body.imageName, vote: false });
+        [likes, dislikes] = await Promise.all([likes, dislikes]);
+
+        NScommentsystem.to(req.body.imageName).emit('newVote', { likes, dislikes });
+
+        res.status(200).json({ likes, dislikes })
+    }
+    catch (err) {
+        res.status(400).json({ msg: err.message });
+    }
 });
 
 export default router;

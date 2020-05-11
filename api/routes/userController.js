@@ -7,6 +7,16 @@ import userModel from "../models/userModel";
 
 var router = Router();
 
+router.get('/allusers', async (req, res) => {
+    try {
+        var users = await userModel.find().select('username');
+        res.json(users);
+    }
+    catch (err) {
+        res.status(400).json({ msg: err.message });
+    }
+});
+
 router.post('/register', async (req, res) => {
 
     var { username, password } = req.body;

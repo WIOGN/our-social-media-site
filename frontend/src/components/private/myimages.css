@@ -1,0 +1,11 @@
+.contentContainer {
+    display: grid;
+    gap: 1em 2em;
+    grid-template-columns: repeat(auto-fill, 150px);
+}
+
+.contentThumbnail {
+    display: block;
+    width: 150px;
+    height: 150px;
+}

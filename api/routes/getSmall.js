@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import SmallImage from '../models/small-image'
+import SmallImage from '../models/small-image';
 
 var router = Router();
 

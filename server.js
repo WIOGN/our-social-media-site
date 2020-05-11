@@ -12,6 +12,7 @@ import socketComment from './api/routes/socketComment';
 import socketHome from './api/routes/socketHome';
 import userController from './api/routes/userController';
 import imageData from './api/routes/imageDataSystem';
+import privateAction from './api/routes/private';
 
 fs.mkdir('./uploads/originals', { recursive: true }, (err) => {
     if (err) {
@@ -29,8 +30,8 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
-// var connection = mongoose.connect('mongodb://mongo:27017', { useUnifiedTopology: true });
-var connection = mongoose.connect('mongodb+srv://admin:password12345@wiogn-rcqw7.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true });
+var connection = mongoose.connect('mongodb://mongo:27017', { useUnifiedTopology: true });
+// var connection = mongoose.connect('mongodb+srv://admin:password12345@wiogn-rcqw7.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true });
 
 var db = mongoose.connection;
 
@@ -48,6 +49,7 @@ app.use('/api/getsmall', getSmall);
 app.use('/api/getimage', getImage);
 app.use('/api/usercontroller', userController);
 app.use('/api/imagedata', imageData);
+app.use('/api/private', privateAction);
 
 //Production mode here
 app.use(express.static('frontend/build'));

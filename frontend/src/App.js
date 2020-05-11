@@ -14,6 +14,7 @@ import SignUp from './components/signup/SignUp';
 import LogIn from './components/login/Login';
 import Upload from './components/upload/Upload';
 import NormalImage from './components/imageView/normalImage';
+import MyImages from './components/private/myimages';
 
 class App extends React.Component {
   constructor(props) {
@@ -83,6 +84,8 @@ class App extends React.Component {
           </Route>>
 
           <Route exact path='/image' component={NormalImage} />
+
+          <Route exact path='/myimages' component={MyImages} />
         </Switch>
       </Router>
     );

@@ -45,6 +45,7 @@ class myNavbar extends React.Component {
                     <Nav className='mr-auto'>
                         <NavLink exact to='/' className='nav-link navColorChange'>Home</NavLink>
                         <NavLink exact to='/upload' className='nav-link navColorChange'>Upload</NavLink>
+                        <NavLink exact to='/myimages' className='nav-link navColorChange'>My-Images</NavLink>
                     </Nav>
                     <Nav>
                         <NavLink onClick={this.handleLogout} to='/' className='nav-link navColorChange'>Logout</NavLink>
@@ -65,7 +66,6 @@ class myNavbar extends React.Component {
             </Navbar>
         );
     }
-
 
 }
 
