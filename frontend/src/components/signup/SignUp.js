@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Redirect } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
@@ -10,7 +11,8 @@ class SignUp extends React.Component {
         this.state = {
             username: '',
             password: '',
-            error: null
+            error: null,
+            redirect: null
         }
     }
 
@@ -35,18 +37,26 @@ class SignUp extends React.Component {
                 password: this.state.password
             });
             localStorage.setItem('token', res.data.token);
-        }
-        catch (err) {
-            console.log(err.response);
+            this.props.setAuthTrue();
             this.setState({
-                error: err.response.data.msg
+                redirect: '/'
             });
         }
-
-
+        catch (err) {
+            console.log(err);
+            console.log(err.response);
+            if (err.response.status === 400) {
+                this.setState({
+                    error: err.response.data.msg
+                });
+            }
+        }
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <div className="container-fluid h-100">
                 <div className="row justify-content-center align-items-center h-100">

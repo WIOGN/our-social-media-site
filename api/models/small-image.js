@@ -1,6 +1,11 @@
 import { Schema, model } from 'mongoose';
 
 var SmallImageSchema = new Schema({
+    username: {
+        type: String,
+        default: "Username Suppose to be Here",
+        required: true
+    },
     name: {
         type: String,
         required: true

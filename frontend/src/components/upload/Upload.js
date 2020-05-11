@@ -10,7 +10,8 @@ class Upload extends React.Component {
         super(props);
         this.state = {
             file: null,
-            uploadCompleted: null
+            uploadCompleted: null,
+            error: null
         }
     }
 
@@ -25,14 +26,25 @@ class Upload extends React.Component {
         formdata.append('image', this.state.file);
 
         try {
-            var res = await axios.post('/api/upload', formdata);
+            var res = await axios.post('/api/upload', formdata, {
+                headers: {
+                    'x-auth-token': localStorage.getItem('token')
+                }
+            });
             console.log(res.data.name);
             this.setState({
                 uploadCompleted: res.data.name
             });
         }
         catch (err) {
-            alert("Error occurred while uploading")
+            // console.log(err);
+            // console.log(err.response);
+
+            if (err.response.status === 401) {
+                this.setState({
+                    error: err.response.data.msg
+                });
+            }
         }
     }
 
@@ -50,6 +62,7 @@ class Upload extends React.Component {
                     <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-3 specialBox">
                         <h3>Upload Form</h3>
                         <input type="file" className="form-control form-control-lg" onChange={this.handleImageSelect} />
+                        <p style={{ color: 'red' }}>{this.state.error}</p>
                         <button className="btn-lg btn-block uploadButton" onClick={this.handleUpload}>Upload</button>
                     </div>
                 </div>

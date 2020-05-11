@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
 
 });
 
-router.get('/user', auth, async (req, res) => {
+router.post('/user', auth, async (req, res) => {
     try {
         const user = await userModel.findById(req.user.id).select('-password');
         if (!user) throw Error('User Does not exist');

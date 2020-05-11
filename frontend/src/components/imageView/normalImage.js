@@ -1,5 +1,6 @@
 import React from "react";
 import queryString from "query-string";
+import axios from "axios";
 
 import CommentSection from './commentSection';
 import './imagePage.css';
@@ -15,8 +16,6 @@ class NormalImage extends React.Component {
     componentDidMount() {
         console.log(this.state.imageName);
     }
-
-
 
     render() {
         return (

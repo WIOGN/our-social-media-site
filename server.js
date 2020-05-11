@@ -11,6 +11,7 @@ import getImage from './api/routes/getNormal';
 import socketComment from './api/routes/socketComment';
 import socketHome from './api/routes/socketHome';
 import userController from './api/routes/userController';
+import imageData from './api/routes/imageDataSystem';
 
 fs.mkdir('./uploads/originals', { recursive: true }, (err) => {
     if (err) {
@@ -46,6 +47,7 @@ app.use('/api/upload', upload);
 app.use('/api/getsmall', getSmall);
 app.use('/api/getimage', getImage);
 app.use('/api/usercontroller', userController);
+app.use('/api/imagedata', imageData);
 
 //Production mode here
 app.use(express.static('frontend/build'));

@@ -7,8 +7,7 @@ import sharp from 'sharp';
 import NormalImage from '../models/normal-image';
 import SmallImage from '../models/small-image';
 import { NShomesystem } from './socketHome';
-import auth from '../../middleware/auth'
-import user from '../models/userModel'
+import auth from '../../middleware/auth';
 
 var router = Router();
 
@@ -27,7 +26,7 @@ router.post('/', auth, upload.single('image'), async function (req, res, next) {
     // console.log(req.file);
 
     try {
-
+        console.log(req.user);
         var smallPath = 'uploads/smalls/' + req.file.filename;
 
         sharp(req.file.path)
@@ -35,11 +34,13 @@ router.post('/', auth, upload.single('image'), async function (req, res, next) {
             .toFile(smallPath)
 
         var newNormalImage = new NormalImage({
+            username: req.user.username,
             name: req.file.filename,
             path: req.file.path
         });
 
         var newSmallImage = new SmallImage({
+            username: req.user.username,
             name: req.file.filename,
             path: smallPath
         });

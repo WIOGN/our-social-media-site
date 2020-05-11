@@ -11,48 +11,53 @@ const handleCommentSocket = (io) => {
         socket.on('joinRoom', async (data) => {
             //room is image name
             socket.join(data.room);
-
-            try {
-                var likes = await VotingModel.countDocuments({ imageName: data.room, vote: true });
-                var dislikes = await VotingModel.countDocuments({ imageName: data.room, vote: false });
-                socket.emit('newVote', { likes: likes, dislikes: dislikes });
-                var comments = await CommentModel.find({ imageName: data.room }).sort({ date: -1 });
-                socket.emit('OldComment', comments.map((item) => ({ comment: item.comment })));
-            }
-            catch (err) {
-                socket.emit('OldComment', [])
-            }
         });
 
-        socket.on('newComment', (data) => {
-            var newComment = new CommentModel({
-                imageName: data.room,
-                comment: data.comment
-            });
-            newComment.save();
+        // socket.on('joinRoom', async (data) => {
+        //     //room is image name
+        //     socket.join(data.room);
 
-            NScommentsystem.to(data.room).emit('newComment', { comment: data.comment });
-        });
+        //     try {
+        //         var likes = await VotingModel.countDocuments({ imageName: data.room, vote: true });
+        //         var dislikes = await VotingModel.countDocuments({ imageName: data.room, vote: false });
+        //         socket.emit('newVote', { likes: likes, dislikes: dislikes });
+        //         var comments = await CommentModel.find({ imageName: data.room }).sort({ date: -1 });
+        //         socket.emit('OldComment', comments.map((item) => ({ comment: item.comment })));
+        //     }
+        //     catch (err) {
+        //         socket.emit('OldComment', [])
+        //     }
+        // });
 
-        socket.on('newVote', async (data) => {
+        // socket.on('newComment', (data) => {
+        //     var newComment = new CommentModel({
+        //         imageName: data.room,
+        //         comment: data.comment
+        //     });
+        //     newComment.save();
 
-            try {
-                var newVote = new VotingModel({
-                    imageName: data.room,
-                    vote: data.vote
-                });
+        //     NScommentsystem.to(data.room).emit('newComment', { comment: data.comment });
+        // });
 
-                await newVote.save();
+        // socket.on('newVote', async (data) => {
 
-                var likes = await VotingModel.countDocuments({ imageName: data.room, vote: true });
-                var dislikes = await VotingModel.countDocuments({ imageName: data.room, vote: false });
+        //     try {
+        //         var newVote = new VotingModel({
+        //             imageName: data.room,
+        //             vote: data.vote
+        //         });
 
-                NScommentsystem.to(data.room).emit('newVote', { likes: likes, dislikes: dislikes });
-            }
-            catch (err) {
-                console.log(err);
-            }
-        });
+        //         await newVote.save();
+
+        //         var likes = await VotingModel.countDocuments({ imageName: data.room, vote: true });
+        //         var dislikes = await VotingModel.countDocuments({ imageName: data.room, vote: false });
+
+        //         NScommentsystem.to(data.room).emit('newVote', { likes: likes, dislikes: dislikes });
+        //     }
+        //     catch (err) {
+        //         console.log(err);
+        //     }
+        // });
 
     });
 }
