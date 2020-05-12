@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 
-// https://github.com/brianloveswords/node-jws/blob/master/lib/verify-stream.js#L100
 // "MY_JwT_SECReT_VaLUE_SHoULD_CHANgE_ThIS_ShouLd_bE_RaNdOm"
 
 export default (req, res, next) => {
